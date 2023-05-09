@@ -2,16 +2,25 @@ import * as usersAPI from './users-api'
 
 export async function signUp(userData){
 
-    const token = await usersAPI.signUp(userData);
-    localStorage.setItem('token', token);
-    return getUser();
-
+    console.log(userData)
+    let credentials
+    await usersAPI.signUp(userData)
+    .then((res) => {
+        console.log(res)
+        delete userData.username
+        credentials = userData
+    })
+    return login(credentials)
 }
 
 export async function login(credentials){
 
-    const token = await usersAPI.login(credentials);
-    localStorage.setItem('token', token);
+    console.log(credentials)
+    let token
+    await usersAPI.login(credentials)
+    .then((res) => token = res.tokens.access)
+    .then((res) => localStorage.setItem('token', token))
+    .then((res) => console.log(token))
     return getUser();
 
 }
@@ -37,8 +46,11 @@ export function getToken(){
 export function getUser() {
 
     const token = getToken();
-    // If there's a token, return the user in the payload, otherwise return null
-    return token ? JSON.parse(atob(token.split('.')[1])).user : null;
+    // If there's a token, return the user_id stored in the payload, otherwise return null
+    console.log(token)
+    let response = token ? JSON.parse(atob(token.split('.')[1])).user_id : null;
+    console.log(response)
+    return response;
 
 }
 

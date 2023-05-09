@@ -5,9 +5,14 @@ export default async function sendRequest(url, method = 'GET', payload = null) {
     // what type of HTTP request we are replicating
     const options = { method };
 
+    options.mode = 'cors'
+
     // if we included a specified payload (most likely for token auth)
     if (payload) {
-        options.headers = { 'Content-Type': 'application/json' };
+        options.headers = {
+            'Content-Type': 'application/json',
+            'Origin': 'localhost:5173/'
+         };
         options.body = JSON.stringify(payload);
     }
 
@@ -21,6 +26,8 @@ export default async function sendRequest(url, method = 'GET', payload = null) {
         options.headers.Authorization = `Bearer ${token}`;
 
     }
+
+    console.log(url, options);
 
     const res = await fetch(url, options);
 

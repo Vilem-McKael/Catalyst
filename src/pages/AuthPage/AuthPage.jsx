@@ -13,10 +13,8 @@ export default function AuthPage( { updateUser } ) {
 
   return (
     <>
-    <div className='flex flex-col justify-center items-center'>
-    <img className='h-48 m-auto mt-[12vmin]' src='https://i.imgur.com/IYJdzkF.png' />
-        <div className='flex flex-col justify-center items-center bg-amber-700 text-lg w-3/5 rounded-xl mt-8 rounded-2xl ring-8 ring-black shadow-lg shadow-black/60 ring-inset'>
-            <div className='mt-8'></div>
+    <div>
+        <div>
             { isNewUser ?
                 <>
                     <SignUpForm setUser={updateUser} />
