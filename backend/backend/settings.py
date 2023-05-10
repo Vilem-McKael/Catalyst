@@ -111,7 +111,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'catalyst_test2',
+        'NAME': 'catalyst_test3',
     }
 }
 

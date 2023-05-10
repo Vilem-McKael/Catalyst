@@ -4,7 +4,8 @@ export default function WelcomePage({user}) {
   return (
     <>
         <div>WelcomePage</div>
-        <p>{user}</p>
+        <p>username: {user.username}</p>
+        <p>id: {user.user_id}</p>
     </>
   )
 }

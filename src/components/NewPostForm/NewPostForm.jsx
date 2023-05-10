@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import * as postsAPI from '../../utilities/posts-api'
-import { Navigate as navigate } from 'react-router-dom'
 
-export default function NewPostForm({user}) {
+export default function NewPostForm({user, collectiv}) {
 
     const [postData, setPostData] = useState({
         title: '',
@@ -21,10 +20,11 @@ export default function NewPostForm({user}) {
     async function handleSubmit(evt) {
         evt.preventDefault()
         try {
-            let newPostData = postData
-            newPostData.user = user
+            const newPostData = postData
+            newPostData.user = user.user_id
+            newPostData.collectiv_id = collectiv.id
             console.log(newPostData)
-            const post = await postsAPI.createPost(postData)
+            const post = await postsAPI.createPost(newPostData)
             .then((res) => console.log(post));
             // navigate(to='/');
         } catch {

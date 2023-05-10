@@ -6,11 +6,18 @@ from rest_framework.response import Response
 from rest_framework.request import Request
 from rest_framework.views import APIView
 
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+
 from .models import User
 from .serializers import SignUpSerializer
 from .tokens import create_jwt_pair_for_user
 
 # Create your views here.
+
+"""
+        USER AUTHENTICATION VIEWS
+"""
 
 # Accessed at /auth/signup/
 class SignUpView(generics.GenericAPIView):
@@ -62,6 +69,7 @@ class LoginView(APIView):
         if user is not None:
 
             tokens=create_jwt_pair_for_user(user)
+            userData = User.objects.filter(username=user)[0]
 
             response = {
                 "message": "Login Successful",
@@ -85,5 +93,34 @@ class LoginView(APIView):
         }
 
         return Response(data=content, status=status.HTTP_200_OK)
+    
+
+"""
+        CUSTOM TOKEN VIEWS
+"""
+#https://stackoverflow.com/questions/54544978/customizing-jwt-response-from-django-rest-framework-simplejwt
+
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    def validate(self, attrs):
+        data = super().validate(attrs)
+        refresh = self.get_token(self.user)
+
+        return data
+
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+
+        # Add custom claims
+        token['user'] = {
+            "user_id": user.id,
+            "username": user.username
+            # add communities here
+        }
+        # token['communities'] = user.communities.communities.values_list('name', flat=True)
+
+        return token
 
 
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer

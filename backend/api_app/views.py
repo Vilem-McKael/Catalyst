@@ -1,16 +1,23 @@
 from django.shortcuts import get_object_or_404
+from django.contrib.auth import get_user
 
 from rest_framework import status
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.decorators import APIView
+from rest_framework.decorators import api_view, APIView
 
-from .models import Post
-from .serializers import PostSerializer
+
+from .models import Post, Collectiv, Comment
+from accounts.models import User
+from .serializers import PostSerializer, CollectivSerializer, CommentSerializer
 
 # Create your views here.
+
+"""
+    POST VIEW FUNCTIONS
+"""
 
 class PostListCreateView(APIView):
 
@@ -36,12 +43,22 @@ class PostListCreateView(APIView):
     def post(self, request:Request, *args, **kwargs):
         data = request.data
 
-        print(request.data)
+        print('data: ', request.data)
+
+        collectiv = Collectiv.objects.filter(id=data['collectiv_id']).first()
+
+        data['collectiv'] = collectiv.id
 
         # self.serializer_class was defined to be PostSerializer at the top of our class view
         serializer = self.serializer_class(data=data)
 
+        print(serializer)
+
+
+
         if serializer.is_valid():
+
+
             serializer.save()
 
             response = {
@@ -65,7 +82,6 @@ class PostRetrieveUpdateDeleteView(APIView):
         post = get_object_or_404(Post, pk=post_id)
 
         serializer = self.serializer_class(instance=post)
-        permission_classes = [IsAuthenticated]
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
@@ -92,23 +108,120 @@ class PostRetrieveUpdateDeleteView(APIView):
 
         post.delete()
 
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response(data={"message": "Post deleted"}, status=status.HTTP_204_NO_CONTENT)
     
-# @api_view(http_method_names=['GET'])
-# def post_detail(request:Request, post_id:int):
+"""
+    COMMENT VIEW FUNCTIONS
+"""
 
-#     # returns a 404 error if the object is not found
-#     post = get_object_or_404(Post, pk=post_id)
 
-#     serializer = PostSerializer(instance=post)
+"""
+    COLLECTIV VIEW FUNCTIONS
+"""
 
-#     response = {
-#         "message":"post",
-#         "data": serializer.data
-#     }
+class CollectivListCreateView(APIView):
 
-#     # this will only run if the object has been found
-#     return Response(data=response, status=status.HTTP_200_OK)
+    serializer_class = CollectivSerializer
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    # GET ALL COLLECTIVS AT /collectivs/ 'GET'
+    def get(self, request:Request, *args, **kwargs):
+        collectivs = Collectiv.objects.all()
+
+        serializer=self.serializer_class(instance=collectivs, many=True)
+
+        print(serializer.data)
+
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+    # ADD A NEW COLLECTIV AT /collectivs/ 'POST'
+    def post(self, request:Request, *args, **kwargs):
+        data = request.data
+
+        # user = User.objects.filter(id=id)[0]
+
+        user = User.objects.filter(username=request.user).first().id
+
+
+        data['members'] = [user]
+
+        # print('first print ', request.data, user)
+
+        serializer = self.serializer_class(data=data)
+        # serializer.members.add(user)
+
+        print('serializer', serializer)
+
+        if serializer.is_valid():
+
+            serializer.save()
+
+            response = {
+                "message": "Collectiv Created",
+                "data": serializer.data
+            }
+
+            return Response(data=response, status=status.HTTP_201_CREATED)
+        
+        return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+class CollectivRetrieveUpdateDeleteView(APIView):
+
+    serializer_class = CollectivSerializer
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request:Request, collectiv_id:int):
+        collectiv = get_object_or_404(Collectiv, pk=collectiv_id)
+
+        serializer = self.serializer_class(instance=collectiv)
+
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+    def put(self, request:Request, collectiv_id:int):
+        collectiv = get_object_or_404(Collectiv, pk=collectiv_id)
+
+        data = request.data
+
+        serializer = self.serializer_class(instance=collectiv, data=data)
+
+        if serializer.is_valid():
+            serializer.save()
+
+            response = {
+                "message": "Collectiv updated",
+                "data": serializer.data
+            }
+            return Response(data=response, status=status.HTTP_200_OK)
+        
+        return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request:Request, collectiv_id:int):
+        post = get_object_or_404(Collectiv, pk=collectiv_id)
+
+        post.delete()
+
+        return Response(data={"message": "Collectiv deleted"}, status=status.HTTP_204_NO_CONTENT)
+    
+@api_view(http_method_names=['GET'])
+def get_posts_by_collectiv(request:Request, collectiv_id:int):
+
+    # returns a 404 error if the object is not found
+    collectiv = get_object_or_404(Collectiv, pk=collectiv_id)
+
+    posts = collectiv.post_set.all()
+
+    serializer = PostSerializer(many=True, instance=posts)
+
+    response = {
+        "message":"post",
+        "data": serializer.data
+    }
+
+    # this will only run if the object has been found
+    return Response(data=response, status=status.HTTP_200_OK)
 
 """
     CHANGE THIS TO GET USER POSTS

@@ -11,7 +11,9 @@ export default function NavBar({user, updateUser}) {
 
   return (
     <div>
-        <Link to='/community'>Community</Link>
+        <Link to='/collectivs'>All Collectivs</Link>
+        |
+        <Link to='/collectiv/new'>New Collectiv</Link>
         |
         <Link to='' onClick={handleLogOut}>Log Out</Link>
     </div>

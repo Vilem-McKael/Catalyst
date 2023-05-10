@@ -6,8 +6,11 @@ import './App.css'
 
 import AuthPage from '../AuthPage/AuthPage'
 import NavBar from '../../components/NavBar/NavBar'
+import SideBar from '../../components/SideBar/SideBar'
 import WelcomePage from '../WelcomePage/WelcomePage'
-import CommunityPage from '../CommunityPage/CommunityPage'
+import CollectivPage from '../CollectivPage/CollectivPage'
+import NewCollectivPage from '../NewCollectivPage/NewCollectivPage'
+import CollectivListPage from '../CollectivListPage/CollectivListPage'
 
 function App() {
 
@@ -19,15 +22,25 @@ function App() {
   }
 
   return (
-    <main className="App">
+    <main className="App" id='main'>
       {user ? 
-        <>
+        <div className='appview'>
+        
+        <div id='navbar'>
           <NavBar user={user} updateUser={updateUser} />
+        </div>
+        <div id='sidebar'>
+          <SideBar />
+        </div>
+        <div id='mainview'>
           <Routes>
             <Route path='/' element={<WelcomePage user={user}/>}/>
-            <Route path='/community' element={<CommunityPage user={user}/>}/>
+            <Route path='/collectivs' element={<CollectivListPage />}/>
+            <Route path='/collectiv/:collectiv_id' element={<CollectivPage user={user}/>}/>
+            <Route path='/collectiv/new' element={<NewCollectivPage />}/>
           </Routes>
-        </>
+        </div>
+        </div>
         :
         <AuthPage updateUser={updateUser} />
       }

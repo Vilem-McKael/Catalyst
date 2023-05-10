@@ -5,8 +5,13 @@ from accounts.models import User
 
 
 
-# class Community(models.Model):
-#     pass
+class Collectiv(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField(max_length=1000)
+    created = models.DateTimeField(auto_now_add=True)
+    members = models.ManyToManyField(User)
+    private = models.BooleanField(default=False)
+    #image
 
 
 class Post(models.Model):
@@ -14,7 +19,7 @@ class Post(models.Model):
     content = models.TextField(max_length=1000)
     created = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    # community = models.ForeignKey(Community, on_delete=models.CASCADE)
+    collectiv = models.ForeignKey(Collectiv, on_delete=models.CASCADE)
     # username
 
     def __str__(self):

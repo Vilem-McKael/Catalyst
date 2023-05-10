@@ -16,13 +16,23 @@ export async function signUp(userData){
 export async function login(credentials){
 
     console.log(credentials)
-    let token
+    let response
     await usersAPI.login(credentials)
-    .then((res) => token = res.tokens.access)
-    .then((res) => localStorage.setItem('token', token))
-    .then((res) => console.log(token))
+    .then((res) => console.log('login response: ', res))
+    await usersAPI.createJWT(credentials)
+    .then((res) => response = res)
+    .then((res) => localStorage.setItem('token', response.access))
+    .then((res) => console.log('token response: ', response))
+    
+    
     return getUser();
 
+}
+
+export async function createJWT(credentials) {
+    console.log(credentials)
+    let response
+    await usersAPI.createJWT(credentials)
 }
 
 export function getToken(){
@@ -48,7 +58,7 @@ export function getUser() {
     const token = getToken();
     // If there's a token, return the user_id stored in the payload, otherwise return null
     console.log(token)
-    let response = token ? JSON.parse(atob(token.split('.')[1])).user_id : null;
+    let response = token ? JSON.parse(atob(token.split('.')[1])).user : null;
     console.log(response)
     return response;
 

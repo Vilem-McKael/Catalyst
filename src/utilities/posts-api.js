@@ -11,6 +11,11 @@ export function getOnePost(post_id) {
     return sendRequest(`${BASE_URL}/${post_id}/`)
 }
 
+export function getPostsByCollectiv(collectiv_id) {
+    console.log(collectiv_id)
+    return sendRequest(`${BASE_URL}/${collectiv_id}/get_posts`)
+}
+
 export function getAllPostsByUserId(user_id) {
     console.log(user_id)
     return sendRequest(`${BASE_URL}/users/${user_id}/`)
@@ -21,12 +26,12 @@ export function createPost(postData) {
     return sendRequest(`${BASE_URL}/`, 'POST', postData)
 }
 
-export function updatePost(postData) {
-    console.log(userData)
-    return sendRequest(`${BASE_URL}/update/`, 'POST', postData)
+export function editPost(postData) {
+    console.log(postData)
+    return sendRequest(`${BASE_URL}/${postData.id}/`, 'PUT', postData)
 }
 
 export function deletePost(post_id) {
-    console.log(userData)
-    return sendRequest(`${BASE_URL}/delete/`, 'POST', userData)
+    console.log(post_id)
+    return sendRequest(`${BASE_URL}/${post_id}/`, 'DELETE', {})
 }

@@ -8,7 +8,11 @@ export function signUp(userData) {
 }
 
 export function login(credentials) {
-    return sendRequest(`${BASE_URL}/login/`, 'POST', credentials);
+    return sendRequest(`${BASE_URL}/login/`, 'POST', credentials)
+}
+
+export function createJWT(credentials) {
+    return sendRequest(`${BASE_URL}/jwt/create/`, 'POST', credentials)
 }
 
 export function checkToken() {
