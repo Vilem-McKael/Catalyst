@@ -73,6 +73,8 @@ CORS_ALLOWED_ORIGINS = [
     'https://catalyst.herokuapp.com',
 ]
 
+ALLOWED_HOSTS = ['catalyst.herokuapp.com', '127.0.0.1:8000', '127.0.0.1:5173', 'localhost']
+
 ROOT_URLCONF = 'backend.urls'
 
 REST_FRAMEWORK = {
