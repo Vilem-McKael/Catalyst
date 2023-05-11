@@ -9,9 +9,10 @@ export default function CollectivList() {
     useEffect(function() {
         async function getCollectivs() {
             try {
-                const allCollectivs = await collectivsAPI.getAllCollectivs();
-                console.log(allCollectivs)
-                setCollectivs(allCollectivs);
+                const response = await collectivsAPI.getUserCollectivs();
+                console.log('response: ', response, ' response data: ', response.data)
+                setCollectivs(response.data);
+                console.log(collectivs)
             } catch (err) {
                 console.log(err)
             }
@@ -19,9 +20,9 @@ export default function CollectivList() {
         getCollectivs();
     }, [])
 
-  return (
-    <div>
-        {collectivs.map((collectiv, idx) => <CollectivCard collectiv={collectiv} key={idx}/>)}
-    </div> 
-  )
+    return (
+        <div>
+            {collectivs.map((collectiv, idx) => <CollectivCard collectiv={collectiv} key={idx}/>)}
+        </div> 
+    )
 }

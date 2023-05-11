@@ -11,6 +11,7 @@ import WelcomePage from '../WelcomePage/WelcomePage'
 import CollectivPage from '../CollectivPage/CollectivPage'
 import NewCollectivPage from '../NewCollectivPage/NewCollectivPage'
 import CollectivListPage from '../CollectivListPage/CollectivListPage'
+import CollectivSearchPage from '../CollectivSearchPage/CollectivSearchPage'
 
 function App() {
 
@@ -36,6 +37,7 @@ function App() {
           <Routes>
             <Route path='/' element={<WelcomePage user={user}/>}/>
             <Route path='/collectivs' element={<CollectivListPage />}/>
+            <Route path='/collectivs/search' element={<CollectivSearchPage />}/>
             <Route path='/collectiv/:collectiv_id' element={<CollectivPage user={user}/>}/>
             <Route path='/collectiv/new' element={<NewCollectivPage />}/>
           </Routes>

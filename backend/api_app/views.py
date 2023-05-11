@@ -45,9 +45,12 @@ class PostListCreateView(APIView):
 
         print('data: ', request.data)
 
-        collectiv = Collectiv.objects.filter(id=data['collectiv_id']).first()
+        collectiv = Collectiv.objects.get(id=data['collectiv_id'])
+        user = User.objects.get(id=data['user'])
 
         data['collectiv'] = collectiv.id
+        print(user.username)
+        data['username'] = user.username
 
         # self.serializer_class was defined to be PostSerializer at the top of our class view
         serializer = self.serializer_class(data=data)
@@ -141,7 +144,7 @@ class CollectivListCreateView(APIView):
 
         # user = User.objects.filter(id=id)[0]
 
-        user = User.objects.filter(username=request.user).first().id
+        user = User.objects.get(username=request.user).id
 
 
         data['members'] = [user]
@@ -221,6 +224,65 @@ def get_posts_by_collectiv(request:Request, collectiv_id:int):
     }
 
     # this will only run if the object has been found
+    return Response(data=response, status=status.HTTP_200_OK)
+
+
+# Collectiv Search
+@api_view(http_method_names=['POST'])
+def search_for_collectiv(request:Request):
+
+    search_terms = request.data['search']
+
+    print(search_terms)
+
+
+    matching_collectivs = Collectiv.objects.filter(name__icontains=search_terms)
+
+    serializer = CollectivSerializer(many=True, instance=matching_collectivs)
+
+    response = {
+        "message":"post",
+        "data": serializer.data
+    }
+
+    # this will only run if the object has been found
+    return Response(data=response, status=status.HTTP_200_OK)
+    
+
+# Join a Collectiv
+@api_view(http_method_names=['POST'])
+def join_collectiv(request:Request):
+
+    data = request.data
+
+    collectiv = Collectiv.objects.get(id=data['collectiv'])
+    user = User.objects.get(id=data['user'])
+
+    collectiv.members.add(user)
+
+    response = {
+        "message":"Successfully joined collectiv",
+    }
+
+    return Response(data={'message': 'workin on it'}, status=status.HTTP_200_OK)
+
+
+@api_view(http_method_names=['POST'])
+def get_user_collectivs(request:Request):
+
+    data = request.data
+
+    user = User.objects.get(id=data['user'])
+
+    collectivs = user.collectiv_set.all()
+
+    serializer = CollectivSerializer(many=True, instance=collectivs)
+
+    response = {
+        "message":"Successfully joined collectiv",
+        "data": serializer.data
+    }
+
     return Response(data=response, status=status.HTTP_200_OK)
 
 """

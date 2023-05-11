@@ -1,7 +1,10 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Navigate as navigate, Link } from 'react-router-dom'
 
 export default function CollectivCard({collectiv}) {
+
+
+
   return (
     <Link to={`/collectiv/${collectiv.id}`}>
     <div>

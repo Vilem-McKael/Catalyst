@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import PostCard from '../PostCard/PostCard'
 
-export default function PostDisplay({posts, updateDisplayedPosts}) {
+export default function PostDisplay({posts}) {
 
     const [postsDisplayed, setPostsDisplayed] = useState([])
 
@@ -11,7 +11,7 @@ export default function PostDisplay({posts, updateDisplayedPosts}) {
 
     return (
         <div>
-            {postsDisplayed.map((post, idx) => <PostCard key={idx} post={post} updateDisplayedPosts={updateDisplayedPosts}/>)}
+            {postsDisplayed.map((post, idx) => <PostCard key={idx} post={post}/>)}
         </div>
     )
 }

@@ -5,52 +5,60 @@ import NewPostForm from '../../components/NewPostForm/NewPostForm'
 import PostDisplay from '../../components/PostDisplay/PostDisplay'
 import { useParams } from 'react-router-dom'
 
-export default function Collectiv({user}) {
+export default function CollectivPage({user}) {
 
   const { collectiv_id } = useParams();
   const [collectiv, setCollectiv] = useState({})
+
   const [posts, setPosts] = useState([])
-  const [postsUpdated, setPostsUpdated] = useState(0)
+  const [postsUpdated, setPostsUpdated] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(function() {
-    async function getCollectivById(id) {
+    async function loadPage() {
       try {
-        const retrievedCollectiv = await collectivsAPI.getCollectiv(id);
+        const retrievedCollectiv = await collectivsAPI.getCollectiv(collectiv_id);
         console.log(retrievedCollectiv)
         setCollectiv(retrievedCollectiv)
+        const allPosts = await postsAPI.getPostsByCollectiv(collectiv_id)
+        console.log('all posts: ', allPosts.data);                                
+        setPosts(allPosts.data);
+        setIsLoading(false);
       } catch (error) {
         console.log(error)
       }
     }
-    getCollectivById(collectiv_id)
-  }, [])
+    loadPage()
+  }, [collectiv_id])
 
-  useEffect(function() {
-    async function getPosts() {
-      const allPosts = await postsAPI.getPostsByCollectiv(collectiv_id)
-      console.log('all posts: ', allPosts.data);
-      setPosts(allPosts.data);
-    }
-    getPosts()
-    console.log('use effect loaded')
-  }, [postsUpdated])
+  // useEffect(function() {
+  //   async function getPosts() {
+  //     const allPosts = await postsAPI.getPostsByCollectiv(collectiv_id)
+  //     console.log('all posts: ', allPosts.data);                                
+  //     setPosts(allPosts.data);
+  //     setIsLoading(false);
+  //   }
+  //   getPosts()
+  //   console.log('use effect loaded')
+  // })
 
-  function updateDisplayedPosts() {
-    console.log('hit update displayed posts')
-    setPostsUpdated(postsUpdated + 1);
+  function updatePosts(updatedPosts) {
+    setPosts(updatedPosts);
   }
 
   return (
     <>
 
-      <h1>{collectiv.name}</h1>
+      <h1 className="text-[3vmin]">{collectiv.name}</h1>
+      <br />
+      <h2 className='text-slate-700'>{collectiv.description}</h2>
 
-      <h2>{collectiv.description}</h2>
+      <hr className='bg-black border-black border-[.1vmin] w-[80vw] m-[0vmin]'/>
 
       <h3>Add a post:</h3>
-      <NewPostForm user={user} updateDisplayedPosts={updateDisplayedPosts} collectiv={collectiv}/>
+      <NewPostForm user={user} collectiv={collectiv}/>
 
-      <PostDisplay posts={posts} updateDisplayedPosts={setPostsUpdated}/>
+      <PostDisplay posts={posts}/>
     
     </>
   )

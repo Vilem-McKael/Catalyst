@@ -12,6 +12,8 @@ class CollectivSerializer(serializers.ModelSerializer):
 
 class PostSerializer(serializers.ModelSerializer):
 
+    # username = serializers.ReadOnlyField(source='get_username')
+
     class Meta:
         model = Post
         fields = '__all__'

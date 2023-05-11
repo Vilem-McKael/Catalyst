@@ -9,9 +9,9 @@ export default function SideBar() {
     useEffect(function() {
         async function getCollectivs() {
             try {
-                const allCollectivs = await collectivsAPI.getAllCollectivs();
-                console.log(allCollectivs)
-                setCollectivs(allCollectivs);
+                const response = await collectivsAPI.getUserCollectivs();
+                console.log('response: ', response, ' response data: ', response.data)
+                setCollectivs(response.data);
             } catch (err) {
                 console.log(err)
             }
@@ -20,8 +20,8 @@ export default function SideBar() {
     }, [])
 
     return (
-        <div className='flex items-center justify-center bg-white'>
-        <h2 className="underline">Collectives:</h2>
+        <div>
+        <h2 className="underline text-[2vmin]">Collectives:</h2>
             {collectivs.map((collectiv, idx) => <CollectivCard collectiv={collectiv} key={idx}/>)}
         </div> 
     )

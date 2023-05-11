@@ -11,7 +11,8 @@ export default function NavBar({user, updateUser}) {
 
   return (
     <div>
-        <Link to='/collectivs'>All Collectivs</Link>
+        {/* <Link to='/collectivs'>All Collectivs</Link> */}
+        <Link to='/collectivs/search'>Search Collectivs</Link>
         |
         <Link to='/collectiv/new'>New Collectiv</Link>
         |

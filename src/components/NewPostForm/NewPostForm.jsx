@@ -25,7 +25,7 @@ export default function NewPostForm({user, collectiv}) {
             newPostData.collectiv_id = collectiv.id
             console.log(newPostData)
             const post = await postsAPI.createPost(newPostData)
-            .then((res) => console.log(post));
+            .then((res) => console.log(post))
             // navigate(to='/');
         } catch {
             // setError('log in failed - try again')
