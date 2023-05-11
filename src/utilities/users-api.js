@@ -1,6 +1,6 @@
 import sendRequest from './send-request';
 
-const BASE_URL = 'http://127.0.0.1:8000/auth'
+const BASE_URL = 'https://catalyst-django-api.herokuapp.com/auth'
 
 export function signUp(userData) {
     console.log(userData)

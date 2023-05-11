@@ -1,6 +1,6 @@
 import sendRequest from './send-request';
 
-const BASE_URL = 'http://127.0.0.1:8000/api/posts'
+const BASE_URL = 'https://catalyst-django-api.herokuapp.com/api/posts'
 
 export function getAllPosts() {
     return sendRequest(`${BASE_URL}/`)
