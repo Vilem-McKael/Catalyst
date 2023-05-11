@@ -1,7 +1,7 @@
 import sendRequest from './send-request';
 import * as usersService from './users-service';
 
-const BASE_URL = 'http://127.0.0.1:8000/api/collectivs'
+const BASE_URL = 'https://catalyst-django-api.herokuapp.com/api/collectivs'
 
 export function getAllCollectivs() {
     return sendRequest(`${BASE_URL}/`)
