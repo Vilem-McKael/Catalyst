@@ -1,14 +1,14 @@
 import React from 'react'
 import { Navigate as navigate, Link } from 'react-router-dom'
 
-export default function CollectivCard({collectiv}) {
+export default function CollectiveCard({collective}) {
 
 
 
   return (
-    <Link to={`/collectiv/${collectiv.id}`}>
+    <Link to={`/collective/${collective.id}`}>
     <div>
-        <h3>{collectiv.name}</h3>
+        <h3>{collective.name}</h3>
         {/* <p>{collectiv.description}</p>
         <p>{collectiv.members}</p>
         <p>{collectiv.id}</p> */}

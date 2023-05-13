@@ -1,34 +1,50 @@
 import React, { useEffect, useState } from 'react'
 import * as postsAPI from '../../utilities/posts-api'
 
-export default function NewPostForm({user, collectiv}) {
+export default function NewPostForm({user, collective, handleAddPost}) {
 
-    const [postData, setPostData] = useState({
-        title: '',
-        content: ''
-    })
+    const [postContent, setPostContent] = useState('')
+
     const [error, setError] = useState('')
 
-    useEffect(function() {
-        console.log('Community loaded')
-    })
+    const [image, setImage] = useState(null)
+
  
     function handleChange(evt) {
-        setPostData({...postData, [evt.target.name]: evt.target.value})
+        setPostContent(evt.target.value)
+    }
+
+    function handleFileUpload(evt) {
+        const file = evt.target.files[0];
+        setImage(file);
     }
 
     async function handleSubmit(evt) {
         evt.preventDefault()
         try {
-            const newPostData = postData
+            const newPostData = {
+                content: postContent
+            }
+            setPostContent('')
             newPostData.user = user.user_id
-            newPostData.collectiv_id = collectiv.id
+            newPostData.collective_id = collective.id
             console.log(newPostData)
-            const post = await postsAPI.createPost(newPostData)
-            .then((res) => console.log(post))
-            // navigate(to='/');
-        } catch {
-            // setError('log in failed - try again')
+            const response = await postsAPI.createPost(newPostData)
+            const post = response.data;
+            console.log(post)
+            if (image) {
+                console.log(image)
+                const imgForm = new FormData()
+                imgForm.append('image-file', image);
+                console.log(imgForm)
+                const response = await postsAPI.addImage(imgForm, post.id);
+                
+                post.image = response.image;
+            }
+            handleAddPost(post)
+        } catch (err) {
+            setError('Something went wrong')
+            console.log(err)
         }
     }
 
@@ -36,13 +52,12 @@ export default function NewPostForm({user, collectiv}) {
 
     return (
         <div>
-            <div>
-                <form autoComplete="off" onSubmit={handleSubmit}>
-                    <label>title: </label>&nbsp;&nbsp;
-                    <input type="text" name="title" value={postData.title} onChange={handleChange} required /><br/>
+            <div className='fixed bottom-0 border-t-[.1vmin] pt-[1vmin] border-black w-[80vw] z-10 bg-[#F5F5F5]'>
+                <form className='flex flex-col justify-end'autoComplete="off" onSubmit={handleSubmit}>
                     <label>content: </label>&nbsp;&nbsp;
-                    <input type="text" name="content" value={postData.content} onChange={handleChange} required /><br/>
-                    <button type="submit">add post</button>
+                    <textarea className="ml-[2vmin] mr-[2vmin]" type="text" name="content" value={postContent} onChange={handleChange} required />
+                    <input type="file" onChange={handleFileUpload}/>
+                    <button type="submit">add post</button><br/><br/>
                 </form>
             </div>
             <p className="error-message">&nbsp;{error}</p>

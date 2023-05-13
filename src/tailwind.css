@@ -7,6 +7,8 @@
   margin: 0;
   background-color: rgb(245, 245, 245);
   color: black;
+  /* font-size: (1px + .5vmin); */
+  font-size: 1.3vmin;
 }
 
 a {
