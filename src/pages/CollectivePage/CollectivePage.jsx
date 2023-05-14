@@ -22,7 +22,10 @@ export default function CollectivePage({user, updateCurrentCollective}) {
         updateCurrentCollective(retrievedCollective)
         const response = await postsAPI.getPostsByCollective(retrievedCollective.id);
         console.log(response);
-        const allPosts = response.data.posts;
+        const unsortedPosts = response.data.posts;
+        const allPosts = unsortedPosts.sort((a, b) => {
+          return new Date(b.created) - new Date(a.created)
+        })
         const allImages = response.data.images;
         console.log('all posts: ', allPosts, 'all images: ', allImages);
         if (allPosts.length) {

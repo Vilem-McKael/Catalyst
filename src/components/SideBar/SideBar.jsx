@@ -5,7 +5,7 @@ export default function SideBar({collectives}) {
 
     return (
         <div>
-        <h2 className="underline text-[2vmin]">Collectives:</h2>
+            <h2 className="text-[16px] mb-[1vmin]">&nbsp;&nbsp;&nbsp;Collectives:</h2>
             {collectives.map((collective, idx) => <CollectiveCard collective={collective} key={idx}/>)}
         </div> 
     )

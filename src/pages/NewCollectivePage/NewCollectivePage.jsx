@@ -35,14 +35,17 @@ export default function NewCollectivePage({collectives, updateCollectives}) {
 
 
     return (
-        <div>
-            <form autoComplete="off" onSubmit={handleSubmit}>
-                <label>collective name: </label>&nbsp;&nbsp;
-                <input type="text" name="name" value={collectiveData.name} onChange={handleChange} required /><br/>
-                <label>collective description: </label>&nbsp;&nbsp;
-                <input type="text" name="description" value={collectiveData.description} onChange={handleChange} required /><br/>
-                <button type="submit">create collective</button>
-            </form>
+        <div className='flex w-[80vw] h-[96vh] justify-center items-center'>
+            <div className='flex flex-col justify-center items-center w-[40vw] h-[40vh] mb-[10vh] p-[4vmin] bg-gradient-to-b from-sky-600 via-indigo-700 to-blue-700 rounded-[10px] ring-8 ring-slate-950'>
+                <h1 className='text-[30px]'>Create something powerful</h1>
+                <form autoComplete="off" onSubmit={handleSubmit} className='flex flex-col items-center'>
+                    <label>collective name: </label>&nbsp;&nbsp;
+                    <input type="text" name="name" value={collectiveData.name} onChange={handleChange} required /><br/>
+                    <label>collective description: </label>&nbsp;&nbsp;
+                    <input type="text" name="description" value={collectiveData.description} onChange={handleChange} required /><br/>
+                    <button type="submit">create collective</button>
+                </form>
+            </div>
         </div>
     )
 }

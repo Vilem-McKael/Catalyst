@@ -48,9 +48,7 @@ function App() {
       getCollectives();
   }, [user])
 
-  // nav  className='bg-gradient-radial from-indigo-900 via-indigo-950 to-black border-b'
-  // dis  className='bg-gradient-to-b from-blue-950 to-black'
-  // side className='bg-gradient-radial from-blue-600 via-blue-700 to-blue-800 ring-8 ring-blue-900 ring-inset'
+//  className='bg-gradient-to-r from-[#0A0E1E] via-[#0E1222] to-[#0A0E1E]'
 
   return (
     <main className="App font-nunito" id='main'>

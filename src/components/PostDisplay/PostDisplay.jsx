@@ -5,8 +5,11 @@ import './PostDisplay.css'
 
 export default function PostDisplay({user, posts, handleDeletePost}) {
 
+    // Scrolls to bottom of the screen on load, showing most recent posts
+    window.scrollTo(0, document.body.scrollHeight);
+
     return (
-        <div id="postdisplay" className='flex flex-col mb-[8.5vh] pt-[-10vmin]'>
+        <div id="postdisplay" className='flex flex-col-reverse mb-[9.5vmin]'>
             {(posts.length) ?
             <>
                 {posts.map((post, idx) => <PostCard

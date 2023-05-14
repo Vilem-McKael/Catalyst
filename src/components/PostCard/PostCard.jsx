@@ -56,7 +56,7 @@ export default function PostCard({post, handleDeletePost, isPostUser}) {
                 <>
                     {editMode ? 
                     <div className='flex justify-between mr-[2vmin]'>
-                        <button type="submit">update post</button>
+                        <button type="submit" onClick={handleEdit}>update post</button>
                         <button onClick={() => setEditMode(false)} className='ml-[1vmin]'>Cancel</button>
                     </div>
                     :

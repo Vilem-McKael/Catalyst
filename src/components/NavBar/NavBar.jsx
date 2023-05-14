@@ -13,13 +13,10 @@ export default function NavBar({user, updateUser, currentCollective}) {
 
   return (
     <>
-        {/* <div>
-          {user.username}
-        </div> */}
-        <div className='nav flex flex-col justify-center w-[20vw]'>
+        <div className='nav flex flex-col justify-center w-[20vw] h-[10vh]'>
         
           <div className="text-center">
-            <h3 className='text-[3vmin] font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-indigo-300 via-sky-500 to-blue-800'>CATALYST</h3>
+            <h3 className='text-[4vmin] font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-indigo-300 via-sky-500 to-blue-800'>CATALYST</h3>
           </div>
           <div className="flex flex-row justify-evenly">
             <div>
