@@ -7,8 +7,7 @@ export default function SignUpForm({ setUser }) {
         username: '',
         email: '',
         password: '',
-        confirm: '',
-        error: ''
+        confirm: ''
     })
 
     const [error, setError] = useState('');
@@ -19,17 +18,20 @@ export default function SignUpForm({ setUser }) {
     }
 
     async function handleSubmit(evt) {
-        evt.preventDefault();
-        try {
-            const formData = {
-                email: userDetails.email,
-                username: userDetails.username,
-                password: userDetails.password
+        evt.preventDefault(); 
+        if (userDetails.password === userDetails.confirm) {
+            try {
+                const formData = {
+                    email: userDetails.email,
+                    username: userDetails.username,
+                    password: userDetails.password
+                }
+                setUser(await usersService.signUp(formData));
+            } catch {
+                setError('Sign Up Failed - Try Again');
             }
-            setUser(await usersService.signUp(formData));
-            // setUser(user);
-        } catch {
-            setUserDetails({ ...userDetails, error: 'Sign Up Failed - Try Again'});
+        } else {
+            setError('Passwords Do Not Match')
         }
     }
 
@@ -43,25 +45,21 @@ export default function SignUpForm({ setUser }) {
     
     <div>
         <div>
-            <form autoComplete="off" onSubmit={handleSubmit}>
+            <form autoComplete="off" onSubmit={handleSubmit} className='text-[20px] flex flex-col items-center'>
                 <div>
-                <label>username:</label>&nbsp;&nbsp;
-                <input type="text" name="username" value={userDetails.username} onChange={handleChange} required />
+                <input type="text" name="username" value={userDetails.username} placeholder='Display Name' onChange={handleChange} required />
                 </div><br/>
                 <div>
-                <label>email:</label>&nbsp;&nbsp;
-                <input type="email" name="email" value={userDetails.email} onChange={handleChange} required />
+                <input type="email" name="email" value={userDetails.email} placeholder='Email' onChange={handleChange} required />
                 </div><br/>
                 <div>
-                <label>password must be 8 or more characters long</label>&nbsp;&nbsp;
+                <label className='text-[16px] italic mb-[2vmin]'>password must be 8 or more characters long</label>&nbsp;&nbsp;
                 </div>
                 <div>
-                <label>password:</label>&nbsp;&nbsp;
-                <input type="password" name="password" value={userDetails.password} onChange={handleChange} required />
+                <input type="password" name="password" value={userDetails.password} placeholder='Password' onChange={handleChange} minLength={8} required />
                 </div><br/>
                 <div>
-                <label>confirm:</label>&nbsp;&nbsp;
-                <input type="password" name="confirm" value={userDetails.confirm} onChange={handleChange} required />
+                <input type="password" name="confirm" value={userDetails.confirm} placeholder='Confirm Password' onChange={handleChange} required />
                 </div><br/>
                 <div>
                 <button type='submit' disabled={isDisabled()}>SIGN UP</button>

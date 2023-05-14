@@ -25,17 +25,19 @@ export default function CollectivePage({user, updateCurrentCollective}) {
         const allPosts = response.data.posts;
         const allImages = response.data.images;
         console.log('all posts: ', allPosts, 'all images: ', allImages);
-        const postsWithImages = (allImages.map((image) => image.post))
-        console.log(allImages.map((image) => image.post));
-        for (let i = 0; i < allPosts.length; i++) {
-          const post = allPosts[i]
-          if (postsWithImages.includes(post.id)) {
-            post.image = allImages[postsWithImages.indexOf(post.id)]
-          } else {
-            post.image = null;
+        if (allPosts.length) {
+          const postsWithImages = (allImages.map((image) => image.post))
+          console.log(allImages.map((image) => image.post));
+          for (let i = 0; i < allPosts.length; i++) {
+            const post = allPosts[i]
+            if (postsWithImages.includes(post.id)) {
+              post.image = allImages[postsWithImages.indexOf(post.id)]
+            } else {
+              post.image = null;
+            }
           }
+          setPosts(allPosts)
         }
-        setPosts(allPosts)
       } catch (error) {
         console.log(error)
       }

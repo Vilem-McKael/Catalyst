@@ -5,22 +5,42 @@
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-rows: 10% 90%;
+  grid-template-rows: 4% 6% 90%;
   grid-template-columns: 20% 80%;
+  color: rgb(180, 180, 180);
+  background-color: rgb(39, 39, 48);
 }
+/* 
+app; rgb(39, 39, 48)
+sides: rgb(17, 17, 34)
+text: rgb(166, 166, 223)
+
+*/
 
 #navbar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  grid-area: 1 / 1 / 2 / 3;
+  grid-area: 1 / 1 / 3 / 3;
   position: fixed;
-  width: 100vw;
+  width: 20vw;
   height: 10vh;
-  padding: 2vmin;
-  border-bottom: .1vmin solid black;
+  border-bottom: .1vmin solid rgb(80, 80, 90);
+  border-right: .1vmin solid rgb(80, 80, 90);
+  /*border-image: url('../../assets/images/blue-background.jpeg') */ /* source */ /*27 /*/ /* slice */ /*0 .5vmin .5vmin 0 / */ /* width */ /* 0px */ /* outset */ /* round; */ /* repeat */
   z-index: 10;
-  background-color: rgb(245, 245, 245);
+  background-color: rgb(17, 17, 34);
+}
+
+#displaybar {
+  display: flex;
+  grid-area: 1 / 2 / 2 / 3;
+  position: fixed;
+  width: 80vw;
+  height: 4vh;
+  margin-left: 20vw;
+  border-bottom: .1vmin solid rgb(80, 80, 90);
+  z-index: 10;
+  background-color: rgb(17, 17, 34);
 }
 
 #sidebar {
@@ -30,12 +50,13 @@
   padding-left: 2vmin;
   align-items: flex-start;
   justify-content: flex-start;
-  grid-area: 2 / 1 / 3 / 2;
+  grid-area: 2 / 1 / 4 / 2;
   position: fixed;
   height: 90vh;
   width: 20vw;
-  margin-top: 8.5vh;
-  border-right: .1vmin solid black
+  margin-top: 10vh;
+  border-right: .1vmin solid rgb(80, 80, 90);
+  background-color: rgb(17, 17, 34);
 }
 
 #mainview {
@@ -43,5 +64,6 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  grid-area: 2 / 2 / 3 / 3;
+  grid-area: 2 / 2 / 4 / 3;
+  /* background-color: rgb(73, 73, 105); */
 }

@@ -1,0 +1,8 @@
+#newpostform {
+    background-color: rgb(28, 28, 34);
+}
+
+#custom-image-input {
+    display: none;
+    content: Select an image;
+}

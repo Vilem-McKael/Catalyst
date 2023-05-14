@@ -12,6 +12,7 @@ import WelcomePage from '../WelcomePage/WelcomePage'
 import CollectivePage from '../CollectivePage/CollectivePage'
 import NewCollectivePage from '../NewCollectivePage/NewCollectivePage'
 import CollectiveSearchPage from '../CollectiveSearchPage/CollectiveSearchPage'
+import DisplayBar from '../../components/DisplayBar/DisplayBar'
 
 function App() {
 
@@ -47,18 +48,25 @@ function App() {
       getCollectives();
   }, [user])
 
+  // nav  className='bg-gradient-radial from-indigo-900 via-indigo-950 to-black border-b'
+  // dis  className='bg-gradient-to-b from-blue-950 to-black'
+  // side className='bg-gradient-radial from-blue-600 via-blue-700 to-blue-800 ring-8 ring-blue-900 ring-inset'
+
   return (
-    <main className="App" id='main'>
+    <main className="App font-nunito" id='main'>
       {user ? 
         <div className='appview'>
         
         <div id='navbar'>
           <NavBar user={user} updateUser={updateUser} currentCollective={currentCollective} />
         </div>
+        <div id='displaybar'>
+          <DisplayBar user={user} currentCollective={currentCollective} />
+        </div>
         <div id='sidebar'>
           <SideBar collectives={collectives} />
         </div>
-        <div id='mainview'>
+        <div id='mainview' className='font-nunito'>
           <Routes>
             <Route path='/' element={<WelcomePage user={user}/>}/>
             <Route path='/collectives/search' element={<CollectiveSearchPage userCollectives={collectives} updateCollectives={updateCollectives}/>}/>
