@@ -72,11 +72,7 @@
 ![built-with-love](https://img.shields.io/badge/Made%20with-Love-red)
     
     
-[Trello link, featuring planned features](https://downbeat-daw.herokuapp.com](https://trello.com/b/xZ8EM7is/downbeat)
-
-[Wireframe made before building](https://whimsical.com/wireframe-Jsrrqk3Eed3EBxGG2tdtSw)
-
-[Entity-relationship Diagram (database functionality)](https://whimsical.com/erd-XfBhETqBxo3JL5xDQJdrBM)
+[Trello link, featuring planned features](https://downbeat-daw.herokuapp.com](https://trello.com/b/zUjCOrcx/catalyst)
 
 ## Icebox Features
 
