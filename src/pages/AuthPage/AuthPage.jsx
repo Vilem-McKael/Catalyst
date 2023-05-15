@@ -16,8 +16,9 @@ export default function AuthPage( { updateUser } ) {
   return (
     <>
     <div id='auth-page' className='flex justify-center items-center'>
-        <div className='w-[480px] h-[560px] bg-gradient-to-b from-blue-700/90 to-blue-900/90 mb-[10vmin] rounded-2xl text-white border-blue-950 border-[1vmin]'>
-            <h1 className='text-[40px] text-center mt-[2vmin] mb-[2vmin]'>Catalyst</h1>
+        <div className='w-[480px] h-[560px] bg-gradient-to-b from-blue-800/90 to-blue-950/90 mb-[10vmin] rounded-2xl text-white border-blue-950 border-[1vmin]'>
+            <h1 className='flex flex-row justify-center text-[40px] mt-[1vmin]'><img src='https://i.imgur.com/eyfjME1.png' className='h-[calc(120px+10vh)]'/></h1>
+            <div className='mt-[-5vmin]'>
             { isNewUser ?
                 <>
                     <SignUpForm setUser={updateUser} />
@@ -27,8 +28,9 @@ export default function AuthPage( { updateUser } ) {
                     <LoginForm setUser={updateUser} />
                 </>
             }
+            </div>
             <div className='flex flex-col justify-center items-center sticky bottom-[2vmin] text-center'>
-                <button className='w-[400px] text-[20px] border-none' onClick={handleClick}>{isNewUser ? 'Already have an account? Sign in here' : 'Create an Account'}</button>
+                <button className='w-[400px] text-[20px] text-[#C5C5C5] border-none' onClick={handleClick}>{isNewUser ? 'Already have an account? Sign in here' : 'or Create an Account'}</button>
             </div>
         </div>
     </div>

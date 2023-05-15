@@ -1,11 +1,8 @@
 import sendRequest from './send-request';
 
-const BASE_URL = import.meta.env.VITE_BASE_URL
-
-const API_URL = BASE_URL + '/auth'
+const API_URL = 'https://catalyst-django-api.herokuapp.com/auth'
 
 export function signUp(userData) {
-    console.log(userData)
     return sendRequest(`${API_URL}/signup/`, 'POST', userData)
 }
 

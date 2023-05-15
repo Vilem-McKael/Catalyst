@@ -6,11 +6,14 @@ import './PostDisplay.css'
 export default function PostDisplay({user, posts, handleDeletePost}) {
 
     // Scrolls to bottom of the screen on load, showing most recent posts
-    window.scrollTo(0, document.body.scrollHeight);
+    useEffect(() => 
+        window.scrollTo(0, document.body.scrollHeight)
+    , [posts])
+    
 
     return (
-        <div id="postdisplay" className='flex flex-col-reverse mb-[9.5vmin]'>
-            {(posts.length) ?
+        <div id="postdisplay" className='flex flex-col mb-[120px]'>
+            {posts[posts.length-1] ?
             <>
                 {posts.map((post, idx) => <PostCard
                 key={idx}
@@ -20,9 +23,9 @@ export default function PostDisplay({user, posts, handleDeletePost}) {
             </>
             :
             <>
-                <h1 className='bottom-[10vh] text-center'>No posts yet! Why not be the first?</h1>
             </>
             }
+            <div id="bottom"></div>
         </div>
     )
 }

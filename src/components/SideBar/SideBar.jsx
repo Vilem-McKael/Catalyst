@@ -4,8 +4,8 @@ import CollectiveCard from '../CollectiveCard/CollectiveCard'
 export default function SideBar({collectives}) {
 
     return (
-        <div>
-            <h2 className="text-[16px] mb-[1vmin]">&nbsp;&nbsp;&nbsp;Collectives:</h2>
+        <div className='h-[85vh]'>
+            <h2 className="text-[16px] mb-[.5vmin]">&nbsp;&nbsp;&nbsp;&nbsp;Collectives:</h2>
             {collectives.map((collective, idx) => <CollectiveCard collective={collective} key={idx}/>)}
         </div> 
     )

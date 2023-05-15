@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import * as collectivesAPI from '../../utilities/collectives-api'
+import './CollectiveSearchPage.css'
 
 export default function CollectiveSearchPage({userCollectives, updateCollectives}) {
 
@@ -14,13 +15,16 @@ export default function CollectiveSearchPage({userCollectives, updateCollectives
                     search
                 }
                 const matchingCollectives = await collectivesAPI.searchForCollectives(request)
-                console.log(matchingCollectives.data)
                 if (JSON.stringify(matchingCollectives.data) !== '[]') {
                     setCollectives(matchingCollectives.data)
                 } else {
                     setDisplayMsg('No collectives matched your search')
+                    setCollectives([])
                 }
                 
+            } else {
+                setCollectives([])
+                setDisplayMsg('Try searching for a collective!')
             }
         }
         getMatchingCollectives()
@@ -28,11 +32,10 @@ export default function CollectiveSearchPage({userCollectives, updateCollectives
 
     function handleChange(evt) {
         setSearch(evt.target.value)
-        if (evt.target.value === '') {
+        if (!evt.target.value || !search) {
             setCollectives([])
             setDisplayMsg('Try searching for a collective!')
         }
-        console.log(search)
     }
 
     async function handleClick(evt) {
@@ -41,17 +44,15 @@ export default function CollectiveSearchPage({userCollectives, updateCollectives
         }
         const joinedCollective = collectives.filter((collective) => collective.id === parseInt(evt.target.name))[0]
         const joined = await collectivesAPI.joinCollective(joinData)
-        console.log(joinedCollective);
         updateCollectives([...userCollectives, joinedCollective])
-        console.log('Clicked!')
     }
 
     return (
         <div className='flex flex-col items-center w-[80vw]'>
-            <h2 className='text-[30px] text-indigo-200 mt-[4vmin] text-center'>Looking for <span className='font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-indigo-300 via-pink-500 to-blue-800'>inspiration?</span><br/>
+            <h2 className='text-[30px] text-indigo-100 mt-[4vmin] text-center'>Looking for <span className='font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-indigo-300 via-pink-500 to-blue-800'>inspiration?</span><br/>
             <span className='text-[20px]'>Try searching for new collectives below.</span></h2>
             <div className='flex flex-row justify-center'>
-                <input type='text' value={search} onChange={handleChange} className='w-[48vw] text-[2.5vmin] bg-indigo-500 mt-[4vmin]'/>
+                <input type='text' value={search} placeholder='Try searching for a collective...' onChange={handleChange} className='w-[48vw] text-[2.5vmin] bg-indigo-500 mt-[4vmin]'/>
             </div>
             <div className='mt-[4vmin] flex-col justify-start'>
                 {collectives.length ? 

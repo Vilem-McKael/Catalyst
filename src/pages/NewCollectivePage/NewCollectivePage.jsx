@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import * as collectivesAPI from '../../utilities/collectives-api'
 import { useNavigate } from 'react-router-dom'
+import './NewCollectivePage.css'
 
 export default function NewCollectivePage({collectives, updateCollectives}) {
 
@@ -23,7 +24,6 @@ export default function NewCollectivePage({collectives, updateCollectives}) {
             console.log(newCollectiveData)
             const collective = await collectivesAPI.createCollective(newCollectiveData)
             .then((res) => {
-                console.log(res);
                 updateCollectives([...collectives, res.data]);
                 return res
             })
@@ -36,14 +36,13 @@ export default function NewCollectivePage({collectives, updateCollectives}) {
 
     return (
         <div className='flex w-[80vw] h-[96vh] justify-center items-center'>
-            <div className='flex flex-col justify-center items-center w-[40vw] h-[40vh] mb-[10vh] p-[4vmin] bg-gradient-to-b from-sky-600 via-indigo-700 to-blue-700 rounded-[10px] ring-8 ring-slate-950'>
-                <h1 className='text-[30px]'>Create something powerful</h1>
+            <div className='flex flex-col justify-center items-center w-[40vw] h-[40vh] mb-[10vh] p-[4vmin] bg-gradient-to-b from-sky-600 via-indigo-700 to-blue-700 rounded-[10px] ring-8 ring-indigo-400'>
+                <h1 className='text-[30px] text-[#F5F5F5]'>Establish a new Collective</h1>
+                <h2 className='text-[18px] text-indigo-200'>What kind of space will you create?</h2>
                 <form autoComplete="off" onSubmit={handleSubmit} className='flex flex-col items-center'>
-                    <label>collective name: </label>&nbsp;&nbsp;
-                    <input type="text" name="name" value={collectiveData.name} onChange={handleChange} required /><br/>
-                    <label>collective description: </label>&nbsp;&nbsp;
-                    <input type="text" name="description" value={collectiveData.description} onChange={handleChange} required /><br/>
-                    <button type="submit">create collective</button>
+                    <input type="text" name="name" value={collectiveData.name} placeholder='Collective Name:' onChange={handleChange} className='mt-[2vh] w-[30vw] text-[20px] text-stone-700' required /><br/>
+                    <textarea type="text" name="description" value={collectiveData.description} placeholder='In a Few Words, Describe Your New Collective ...' onChange={handleChange} className='w-[30vw] h-[10vh] text-stone-700 p-[.5vmin] pl-[1vmin] rounded-[5px]' required /><br/>
+                    <button type="submit" className='text-[#F5F5F5] text-[20px] bg-indigo-700'>create</button>
                 </form>
             </div>
         </div>

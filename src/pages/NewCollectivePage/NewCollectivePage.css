@@ -1,0 +1,15 @@
+input {
+    background-color: rgb(235, 235, 235);
+}
+
+input::placeholder {
+    color: rgb(0, 79, 137);
+}
+
+textarea::placeholder {
+    color: rgb(0, 79, 137);
+}
+
+textarea {
+    background-color: rgb(235, 235, 235);
+}

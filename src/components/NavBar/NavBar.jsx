@@ -4,8 +4,6 @@ import { Link, useParams } from 'react-router-dom';
 
 export default function NavBar({user, updateUser, currentCollective}) {
 
-    console.log(currentCollective)
-
     function handleLogOut() {
         logOut()
         updateUser(null);
@@ -13,21 +11,15 @@ export default function NavBar({user, updateUser, currentCollective}) {
 
   return (
     <>
-        <div className='nav flex flex-col justify-center w-[20vw] h-[10vh]'>
+        <div className='nav flex flex-col justify-center w-[20vw] h-[15vh]'>
         
-          <div className="text-center">
-            <h3 className='text-[4vmin] font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-indigo-300 via-sky-500 to-blue-800'>CATALYST</h3>
+          <div className="flex flex-col items-center justify-center text-center mt-[1.5vh] h-[6vh] mb-[1.5vh]">
+            <img src='https://i.imgur.com/eyfjME1.png' className='h-[10vh] mt-[3vh]'/>
           </div>
-          <div className="flex flex-row justify-evenly">
-            <div>
-              <Link to='/collectives/search'>Search</Link>
-            </div>
-            <div>
-              <Link to='/collective/new'>New</Link>
-            </div>
-            <div>
-              <Link to='' onClick={handleLogOut}>Log Out</Link>
-            </div>
+          <div className="flex flex-row justify-evenly items-center bg-gradient-to-b from-blue-500 to-indigo-500 h-[6vh]">
+              <Link to='/collectives/search' className='Link mt-[1vmin]'><i className='icon flaticon-search-1 text-[calc(12px+1vh)]'></i></Link>
+              <Link to='/collective/new' className='Link mt-[1vmin]'><i className='icon flaticon-add-1 text-[calc(16px+1vh)]'></i></Link>
+              <Link to='' onClick={handleLogOut} className='Link mt-[1vmin]'><i className='icon flaticon-logout text-[calc(12px+1vh)]'></i></Link>
           </div>
         </div>
       </>

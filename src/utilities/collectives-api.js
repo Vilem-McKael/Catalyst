@@ -1,9 +1,7 @@
 import sendRequest from './send-request';
 import * as usersService from './users-service';
 
-const BASE_URL = import.meta.env.VITE_BASE_URL
-
-const API_URL = BASE_URL + '/api/collectives'
+const API_URL = 'https://catalyst-django-api.herokuapp.com/api/collectives'
 
 export function getAllCollectives() {
     return sendRequest(`${API_URL}/`)

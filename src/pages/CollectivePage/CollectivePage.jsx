@@ -11,26 +11,22 @@ export default function CollectivePage({user, updateCurrentCollective}) {
 
   const [collective, setCollective] = useState({})
   const [posts, setPosts] = useState([])
-  // const [postsWithImages, setPostsWithImages] = useState([])
 
   useEffect(function() {
     async function loadCollectivePosts() {
       try {
+        setPosts([])
         const retrievedCollective = await collectivesAPI.getCollective(collective_id);
-        console.log(retrievedCollective)
         setCollective(retrievedCollective)
         updateCurrentCollective(retrievedCollective)
         const response = await postsAPI.getPostsByCollective(retrievedCollective.id);
-        console.log(response);
         const unsortedPosts = response.data.posts;
         const allPosts = unsortedPosts.sort((a, b) => {
-          return new Date(b.created) - new Date(a.created)
+          return new Date(a.created) - new Date(b.created)
         })
         const allImages = response.data.images;
-        console.log('all posts: ', allPosts, 'all images: ', allImages);
         if (allPosts.length) {
           const postsWithImages = (allImages.map((image) => image.post))
-          console.log(allImages.map((image) => image.post));
           for (let i = 0; i < allPosts.length; i++) {
             const post = allPosts[i]
             if (postsWithImages.includes(post.id)) {
@@ -60,7 +56,6 @@ export default function CollectivePage({user, updateCurrentCollective}) {
 
   return (
     <>
-      {/* <hr className='bg-black border-black border-[.1vmin] w-[80vw] m-[0vmin]'/> */}
       <PostDisplay user={user} posts={posts} handleDeletePost={handleDeletePost}/>
       <NewPostForm user={user} collective={collective} handleAddPost={handleAddPost}/>
     

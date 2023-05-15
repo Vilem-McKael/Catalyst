@@ -22,8 +22,6 @@ export default async function sendFormRequest(url, method = 'GET', payload = nul
 
     }
 
-    console.log(url, options);
-
     const res = await fetch(url, options);
 
     if (res.ok) return res.json();

@@ -45,24 +45,21 @@ export default function SignUpForm({ setUser }) {
     
     <div>
         <div>
-            <form autoComplete="off" onSubmit={handleSubmit} className='text-[20px] flex flex-col items-center'>
+            <form autoComplete="off" onSubmit={handleSubmit} className='text-[16px] flex flex-col items-center'>
                 <div>
-                <input type="text" name="username" value={userDetails.username} placeholder='Display Name' onChange={handleChange} required />
+                <input type="text" name="username" value={userDetails.username} placeholder='Display Name' onChange={handleChange} className='w-[24vmin] text-stone-700' required />
                 </div><br/>
                 <div>
-                <input type="email" name="email" value={userDetails.email} placeholder='Email' onChange={handleChange} required />
+                <input type="email" name="email" value={userDetails.email} placeholder='Email' onChange={handleChange} className='w-[24vmin] text-stone-700' required />
                 </div><br/>
                 <div>
-                <label className='text-[16px] italic mb-[2vmin]'>password must be 8 or more characters long</label>&nbsp;&nbsp;
-                </div>
-                <div>
-                <input type="password" name="password" value={userDetails.password} placeholder='Password' onChange={handleChange} minLength={8} required />
+                <input type="password" name="password" value={userDetails.password} placeholder='Password (8 or more characters)' onChange={handleChange} minLength={8} className='w-[24vmin] text-stone-700' required />
                 </div><br/>
                 <div>
-                <input type="password" name="confirm" value={userDetails.confirm} placeholder='Confirm Password' onChange={handleChange} required />
+                <input type="password" name="confirm" value={userDetails.confirm} placeholder='Confirm' onChange={handleChange} className='w-[24vmin] text-stone-700' required />
                 </div><br/>
                 <div>
-                <button type='submit' disabled={isDisabled()}>SIGN UP</button>
+                <button type='submit' disabled={isDisabled()} className='text-[24px] bg-indigo-500 border-none pl-[2vmin] pr-[2vmin]'>Sign Up</button>
                 </div>
             </form>
         </div>

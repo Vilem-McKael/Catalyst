@@ -23,7 +23,6 @@ function App() {
   const [currentCollective, setCurrentCollective] = useState({})
 
   function updateUser(userState){
-    console.log(userState)
     setUser(userState);
   }
 
@@ -39,10 +38,9 @@ function App() {
       async function getCollectives() {
           try {
               const response = await collectivesAPI.getUserCollectives();
-              console.log('response: ', response, ' response data: ', response.data)
               setCollectives(response.data);
           } catch (err) {
-              console.log(err)
+              
           }
       }
       getCollectives();

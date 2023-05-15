@@ -1,0 +1,101 @@
+@font-face {
+    font-family: "flaticon_catalyst";
+    src: url("./flaticon_catalyst.ttf?0abb4ffe6175ad81e85af1084f644fc4") format("truetype"),
+url("./flaticon_catalyst.woff?0abb4ffe6175ad81e85af1084f644fc4") format("woff"),
+url("./flaticon_catalyst.woff2?0abb4ffe6175ad81e85af1084f644fc4") format("woff2"),
+url("./flaticon_catalyst.eot?0abb4ffe6175ad81e85af1084f644fc4#iefix") format("embedded-opentype"),
+url("./flaticon_catalyst.svg?0abb4ffe6175ad81e85af1084f644fc4#flaticon_catalyst") format("svg");
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon_catalyst !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.flaticon-add:before {
+    content: "\f101";
+}
+.flaticon-add-image:before {
+    content: "\f102";
+}
+.flaticon-add-1:before {
+    content: "\f103";
+}
+.flaticon-delete:before {
+    content: "\f104";
+}
+.flaticon-close:before {
+    content: "\f105";
+}
+.flaticon-edit:before {
+    content: "\f106";
+}
+.flaticon-pen:before {
+    content: "\f107";
+}
+.flaticon-edit-1:before {
+    content: "\f108";
+}
+.flaticon-pencil:before {
+    content: "\f109";
+}
+.flaticon-remove:before {
+    content: "\f10a";
+}
+.flaticon-search:before {
+    content: "\f10b";
+}
+.flaticon-find:before {
+    content: "\f10c";
+}
+.flaticon-search-1:before {
+    content: "\f10d";
+}
+.flaticon-search-2:before {
+    content: "\f10e";
+}
+.flaticon-search-3:before {
+    content: "\f10f";
+}
+.flaticon-enter:before {
+    content: "\f110";
+}
+.flaticon-log-out:before {
+    content: "\f111";
+}
+.flaticon-exit:before {
+    content: "\f112";
+}
+.flaticon-logout:before {
+    content: "\f113";
+}
+.flaticon-add-image-1:before {
+    content: "\f114";
+}
+.flaticon-send:before {
+    content: "\f115";
+}
+.flaticon-send-1:before {
+    content: "\f116";
+}
+.flaticon-send-2:before {
+    content: "\f117";
+}
+.flaticon-paper-plane:before {
+    content: "\f118";
+}
+.flaticon-approved:before {
+    content: "\f119";
+}
+.flaticon-multiple-users-silhouette:before {
+    content: "\f11a";
+}
+.flaticon-user:before {
+    content: "\f11b";
+}

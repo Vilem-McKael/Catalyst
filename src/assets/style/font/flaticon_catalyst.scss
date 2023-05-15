@@ -1,0 +1,133 @@
+$flaticon_catalyst-font: "flaticon_catalyst";
+
+@font-face {
+    font-family: $flaticon_catalyst-font;
+    src: url("./flaticon_catalyst.ttf?0abb4ffe6175ad81e85af1084f644fc4") format("truetype"),
+url("./flaticon_catalyst.woff?0abb4ffe6175ad81e85af1084f644fc4") format("woff"),
+url("./flaticon_catalyst.woff2?0abb4ffe6175ad81e85af1084f644fc4") format("woff2"),
+url("./flaticon_catalyst.eot?0abb4ffe6175ad81e85af1084f644fc4#iefix") format("embedded-opentype"),
+url("./flaticon_catalyst.svg?0abb4ffe6175ad81e85af1084f644fc4#flaticon_catalyst") format("svg");
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon_catalyst !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+$flaticon_catalyst-map: (
+    "add": "\f101",
+    "add-image": "\f102",
+    "add-1": "\f103",
+    "delete": "\f104",
+    "close": "\f105",
+    "edit": "\f106",
+    "pen": "\f107",
+    "edit-1": "\f108",
+    "pencil": "\f109",
+    "remove": "\f10a",
+    "search": "\f10b",
+    "find": "\f10c",
+    "search-1": "\f10d",
+    "search-2": "\f10e",
+    "search-3": "\f10f",
+    "enter": "\f110",
+    "log-out": "\f111",
+    "exit": "\f112",
+    "logout": "\f113",
+    "add-image-1": "\f114",
+    "send": "\f115",
+    "send-1": "\f116",
+    "send-2": "\f117",
+    "paper-plane": "\f118",
+    "approved": "\f119",
+    "multiple-users-silhouette": "\f11a",
+    "user": "\f11b",
+);
+
+.flaticon-add:before {
+    content: map-get($flaticon_catalyst-map, "add");
+}
+.flaticon-add-image:before {
+    content: map-get($flaticon_catalyst-map, "add-image");
+}
+.flaticon-add-1:before {
+    content: map-get($flaticon_catalyst-map, "add-1");
+}
+.flaticon-delete:before {
+    content: map-get($flaticon_catalyst-map, "delete");
+}
+.flaticon-close:before {
+    content: map-get($flaticon_catalyst-map, "close");
+}
+.flaticon-edit:before {
+    content: map-get($flaticon_catalyst-map, "edit");
+}
+.flaticon-pen:before {
+    content: map-get($flaticon_catalyst-map, "pen");
+}
+.flaticon-edit-1:before {
+    content: map-get($flaticon_catalyst-map, "edit-1");
+}
+.flaticon-pencil:before {
+    content: map-get($flaticon_catalyst-map, "pencil");
+}
+.flaticon-remove:before {
+    content: map-get($flaticon_catalyst-map, "remove");
+}
+.flaticon-search:before {
+    content: map-get($flaticon_catalyst-map, "search");
+}
+.flaticon-find:before {
+    content: map-get($flaticon_catalyst-map, "find");
+}
+.flaticon-search-1:before {
+    content: map-get($flaticon_catalyst-map, "search-1");
+}
+.flaticon-search-2:before {
+    content: map-get($flaticon_catalyst-map, "search-2");
+}
+.flaticon-search-3:before {
+    content: map-get($flaticon_catalyst-map, "search-3");
+}
+.flaticon-enter:before {
+    content: map-get($flaticon_catalyst-map, "enter");
+}
+.flaticon-log-out:before {
+    content: map-get($flaticon_catalyst-map, "log-out");
+}
+.flaticon-exit:before {
+    content: map-get($flaticon_catalyst-map, "exit");
+}
+.flaticon-logout:before {
+    content: map-get($flaticon_catalyst-map, "logout");
+}
+.flaticon-add-image-1:before {
+    content: map-get($flaticon_catalyst-map, "add-image-1");
+}
+.flaticon-send:before {
+    content: map-get($flaticon_catalyst-map, "send");
+}
+.flaticon-send-1:before {
+    content: map-get($flaticon_catalyst-map, "send-1");
+}
+.flaticon-send-2:before {
+    content: map-get($flaticon_catalyst-map, "send-2");
+}
+.flaticon-paper-plane:before {
+    content: map-get($flaticon_catalyst-map, "paper-plane");
+}
+.flaticon-approved:before {
+    content: map-get($flaticon_catalyst-map, "approved");
+}
+.flaticon-multiple-users-silhouette:before {
+    content: map-get($flaticon_catalyst-map, "multiple-users-silhouette");
+}
+.flaticon-user:before {
+    content: map-get($flaticon_catalyst-map, "user");
+}
