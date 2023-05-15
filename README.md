@@ -14,7 +14,7 @@
 
 # Getting Started
 
-[Try Catalyst today, and join your first Collective](zippy-cranachan-baf821.netlify.app)
+[Try Catalyst today, and join your first Collective](https://zippy-cranachan-baf821.netlify.app)
 
 #### Emails used to create Catalyst accounts will never be used for spam.
 
