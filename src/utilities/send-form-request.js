@@ -5,7 +5,7 @@ export default async function sendFormRequest(url, method = 'GET', payload = nul
     // what type of HTTP request we are replicating
     const options = { method };
 
-    options.mode = 'no-cors'
+    options.mode = 'cors'
 
     // if we included a specified payload (most likely for token auth)
     
